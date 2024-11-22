@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+<style>
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        scrollbar-width: none;
+    }
+    body{
+        background-color: #111a22;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+    .main-container{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .hist-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+        width: 35%;
+        height: 10vh;
+        padding: 20px;
+        color: white;
+        font-size: 1.4rem;
+        font-weight:600;
+        background-color: #243647;
+        border-radius: 0.75rem;
+    }
+    .new-button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+        width: 35%;
+        height: 10vh;
+        padding: 20px;
+        font-size: 1.4rem;
+        font-weight:600;
+        color: white;
+        background-color: #1980e6;
+        border-radius: 0.75rem;
+    }
+</style>
+<body>
+        <!-- header-section-start -->
+        <header class="w-screen flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#243647] px-10 py-3">
+            <div class="flex items-center gap-4 text-white">
+              <div class="size-4">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </div>
+              <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Time-Saving Study Planner</h2>
+            </div>
+            <div class="flex gap-2">
+              <button
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#1980e6] text-white text-sm font-bold leading-normal tracking-[0.015em]"
+              >
+                <span class="truncate">Dashboard</span>
+              </button>
+              <button
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#243647] text-white text-sm font-bold leading-normal tracking-[0.015em]"
+              >
+                <span class="truncate">New Chat</span>
+              </button>
+            </div>
+          </header>
+        <!-- header-section-start -->
+       <div class="main-container">
+        <div class="hist-container">
+        Python Notes
+        </div>
+        <div class="hist-container">DS Notes</div>
+        <div class="hist-container"><Data>DSTL Notes</Data></div>
+        <button class="new-button">New Chat</button>
+       </div>
+</body>
+</html>
