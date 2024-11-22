@@ -156,14 +156,14 @@
             <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
                 <div class="upload">
                     <label class="custom-upload">
-                        <input type="file" hidden>
-                        Exam Sechdule
+                        <input type="file" id="examSchedule" accept=".pdf,.doc,.docx,.txt" hidden>
+                        Exam Schedule
                     </label>
                 </div>
                 
                 <div class="upload">
                     <label class="custom-upload">
-                        <input type="file" hidden>
+                        <input type="file" id="syllabus" accept=".pdf,.doc,.docx,.txt" hidden>
                         Syllabus
                     </label>
                 </div>
@@ -177,22 +177,60 @@
     </div>
 
     <script>
-        // const userMessage=document.querySelector(".user-message").value;
-        // const botMessage=document.querySelector(".bot-message");
-        const chatContainer=document.querySelector(".chat-container");
-        const send=document.querySelector(".send");
-        const message=document.querySelector(".message-input");
+    const chatContainer = document.querySelector(".chat-container");
+    const send = document.querySelector(".send");
+    const message = document.querySelector(".message-input");
+    const submitButton = document.querySelector(".submit");
+    const examScheduleInput = document.getElementById("examSchedule");
+    const syllabusInput = document.getElementById("syllabus");
 
-        send.addEventListener("click", function() {
-             const userMessage=document.createElement("div");
-             userMessage.classList.add("user-message");
-             userMessage.textContent = message.value;
-             chatContainer.appendChild(userMessage);
-            message.value="";
-            })
-        
+    send.addEventListener("click", function() {
+        const userMessage = document.createElement("div");
+        userMessage.classList.add("user-message");
+        userMessage.textContent = message.value;
+        chatContainer.appendChild(userMessage);
 
-    </script>
+        // Send the message to the backend
+        fetch('/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ message: message.value })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            const botMessage = document.createElement("div");
+            botMessage.classList.add("bot-message");
+            botMessage.textContent = data.response;
+            chatContainer.appendChild(botMessage);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+        message.value = "";
+    });
+
+    submitButton.addEventListener("click", function() {
+        const formData = new FormData();
+        formData.append("examSchedule", examScheduleInput.files[0]);
+        formData.append("syllabus", syllabusInput.files[0]);
+
+        fetch('/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Files uploaded and parsed successfully:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    });
+</script>
      
   </body>
 </html>
