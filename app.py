@@ -10,7 +10,6 @@ from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 from dotenv import load_dotenv
 
 app = Flask(__name__)
-pip install git-filter-repopip install git-filter-repopip install git-filter-repo
 # Load environment variables from .env file
 load_dotenv()
 
